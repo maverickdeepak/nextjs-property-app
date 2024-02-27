@@ -1,17 +1,6 @@
-import Link from 'next/link'
+import Link from "next/link";
 import PropertyCard from "./PropertyCard";
-
-async function fetchProperties() {
-  try {
-    const res = await fetch(`${process.env.NEXT_PUBLIC_API_DOMAIN}/properties`);
-    if (!res.ok) {
-      throw new Error("Failed to fetch properties");
-    }
-    return res.json();
-  } catch (error) {
-    console.log(error);
-  }
-}
+import { fetchProperties } from "@/utils/request";
 
 const HomePageProperties = async () => {
   const { properties } = await fetchProperties();
@@ -19,7 +8,7 @@ const HomePageProperties = async () => {
   const recentProperties = properties
     .sort(() => Math.random() - Math.random())
     .slice(0, 3);
-    
+
   return (
     <>
       <section className="px-4 py-6">
