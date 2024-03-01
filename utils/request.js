@@ -1,8 +1,9 @@
 const API_DOMAIN = process.env.NEXT_PUBLIC_API_DOMAIN || null;
-
+import connectDB from "@/config/database";
 //fetch all property
 
 async function fetchProperties() {
+  await connectDB()
   try {
     // handle the case where domain is not available yet
     if (!API_DOMAIN) {
@@ -24,6 +25,7 @@ async function fetchProperties() {
 // fetch single property
 
 async function fetchProperty(id) {
+  await connectDB()
   try {
     // handle the case where domain is not available yet
     if (!API_DOMAIN) {
